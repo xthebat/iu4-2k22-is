@@ -111,3 +111,64 @@ task01_strlen:
         pop rbx
         pop rbp
         ret
+
+        global task01_strstr
+; Returns the first occurence (ptr) of the substring
+task01_strstr:
+        push rbp
+        push rbx        ; Loop counter
+        push r12        ; Source string
+        push r13        ; sub-string
+        push r14        ; SubLoop Counter
+
+        mov r12, rdi    ; Save const char* src
+        mov r13, rsi    ; Save const char* sub_string
+
+    task01_strstr_loop_init:
+        xor rbx, rbx
+
+    task01_strstr_loop_begin:
+        mov al, byte [r12 + rbx]
+        test al, al        ; break if str[i] == 0 (fail)
+        jz task01_strstr_fail
+
+    task01_strstr_loop_body:
+        
+    task01_strstr_subloop_init:
+        xor r14, r14
+
+    task01_strstr_subloop_begin:
+        lea rax, [r12 + rbx]
+        mov al, byte [rax + r14]
+        mov cl, byte [r13 + r14]
+        test cl, cl
+        jz task01_strstr_ok
+        cmp al, cl
+        jne task01_strstr_loop_end
+
+    task01_strstr_subloop_body:
+        ; Nothing here )))
+
+    task01_strstr_subloop_end:
+        add r14, 1
+        jmp task01_strstr_subloop_begin
+
+    task01_strstr_loop_end:
+        add rbx, 1
+        jmp task01_strstr_loop_begin
+
+    task01_strstr_fail:
+        xor rax, rax
+        jmp task01_strstr_end
+
+    task01_strstr_ok:
+        lea rax, [r12 + rbx]
+        jmp task01_strstr_end
+
+    task01_strstr_end:
+        pop r14
+        pop r13
+        pop r12
+        pop rbx
+        pop rbp
+        ret
