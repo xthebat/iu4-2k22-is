@@ -17,10 +17,10 @@ test_memset_1:
         
         mov rdi, rsp
         mov rsi, 'a'
-        mov rdx, 0x17
+        mov rdx, 0x7
         call task01_memset
 
-        mov byte [rsp + 0x18], 0x00
+        mov byte [rsp + 0x8], 0x00
     
         mov rdi, g_str_out
         mov rsi, rsp
