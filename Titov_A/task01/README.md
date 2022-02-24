@@ -23,6 +23,28 @@ The program has been written for Linux, therefore, `System V AMD64 ABI` calling 
 
 `make test` will build, link and execute the program
 
+## Test cases
+
+### memset
+
+- Correct type of value (should be considered as `u8`)
+- Zero length
+
+### memcpy
+
+- Zero length
+
+### strlen
+
+- Zero length string
+
+### strstr
+
+- Substr is zero-length
+- Substr is larger than source string
+- String is zero-length
+- Substr at the end of the source string should be determined correctly
+
 # Project Structure
 
 `nasm` has been used
