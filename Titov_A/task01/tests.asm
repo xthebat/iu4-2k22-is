@@ -100,6 +100,34 @@ test_strstr_1:
         pop rbp
         ret
 
+test_strstr_2:
+        push rbp
+
+        mov rdi, g_str1_to_cpy
+        mov rsi, g_large_substring
+        call task01_strstr
+    
+        mov rdi, g_ptr_out
+        mov rsi, rax
+        call printf
+        
+        pop rbp
+        ret
+
+test_strstr_3:
+        push rbp
+
+        mov rdi, g_str1_to_cpy
+        mov rsi, g_empty
+        call task01_strstr
+    
+        mov rdi, g_str_out
+        mov rsi, rax
+        call printf
+        
+        pop rbp
+        ret
+
     section .data
 
 g_ptr_out:
@@ -122,8 +150,14 @@ g_str2_to_cpy:
 g_large_string:
     db "I am the Glob-glo-gab-galab The shwabble-dabble-wabble-gabble flibba blabba blab",0x00
 
+g_large_substring:
+    db "Large large large large large large large large large large large large large large large",0x00
+
 g_pattern_to_find:
     db "bbl",0x00
+
+g_empty:
+    db 0x00
 
 g_test_memset_1_name:
     db "Simple memset test",0x00
@@ -137,6 +171,12 @@ g_test_strlen_1_name:
 g_test_strstr_1_name:
     db "Simple strstr test",0x00
 
+g_test_strstr_2_name:
+    db "large substr strstr test",0x00
+
+g_test_strstr_3_name:
+    db "empty substr strstr test",0x00
+
     global g_test_array
 g_test_array:
     dq g_test_memset_1_name
@@ -147,4 +187,9 @@ g_test_array:
     dq test_strlen_1
     dq g_test_strstr_1_name
     dq test_strstr_1
+    dq g_test_strstr_2_name
+    dq test_strstr_2
+    dq g_test_strstr_3_name
+    dq test_strstr_3
+    dq 0
     dq 0

@@ -143,6 +143,8 @@ task01_strstr:
         mov cl, byte [r13 + r14]
         test cl, cl
         jz task01_strstr_ok
+        test al, al
+        jz task01_strstr_fail
         cmp al, cl
         jne task01_strstr_loop_end
 
