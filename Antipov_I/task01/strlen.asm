@@ -13,4 +13,3 @@ strlen_cyc:
 strlen_ret:
     pop r9
     ret
-    

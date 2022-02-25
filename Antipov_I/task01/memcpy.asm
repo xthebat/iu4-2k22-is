@@ -15,4 +15,3 @@ memcpy_cyc:
 memcpy_ret:
     pop r9
     ret
-    

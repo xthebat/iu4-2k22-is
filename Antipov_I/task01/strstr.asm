@@ -53,4 +53,4 @@ strstr_end:
     pop     r12
     pop     r11
     pop     r10
-ret
+    ret
