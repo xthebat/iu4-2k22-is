@@ -41,12 +41,11 @@ strstr_str_null:
     mov     r13b, byte [rcx + r14]
     mov     r12b, byte [rdx + r14]
     test    r12b, r13b
-    jne     strstr_next_symb
+    jne     strstr_no_match
     add     r11b, 1
     jmp     strstr_inner_loop
 
-strstr_next_symb:
-    add     r10, 1
+strstr_no_match:
     jmp     strstr_global_loop
 strstr_end:
     pop     r14
