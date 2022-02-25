@@ -37,11 +37,11 @@ strstr_substr_null:
 strstr_str_null:
     mov     r14, r11
     add     r14, r10
-    add     r10, 1
     mov     r13b, byte [rcx + r14]
     mov     r12b, byte [rdx + r14]
     test    r12b, r13b
     jne     strstr_no_match
+    add     r10, 1
     add     r11b, 1
     jmp     strstr_inner_loop
 
