@@ -24,5 +24,5 @@ strncpy_skip:
     jmp     strncpy_loop
        
 strncpy_ret:
-    pop r9
+    pop     r9
     ret

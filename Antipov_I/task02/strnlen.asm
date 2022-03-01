@@ -13,5 +13,5 @@ strnlen_loop:
     add     rax, 1
     jmp     strnlen_loop
 strnlen_ret:
-    pop r9
+    pop     r9
     ret
