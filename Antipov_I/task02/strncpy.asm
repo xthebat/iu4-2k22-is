@@ -1,5 +1,8 @@
 SECTION .text 
 ;char * strncpy( char * destptr, const char * srcptr, size_t num );
+    ; rcx -- destptr
+    ; rdx -- srcptr
+    ; r8 -- num
 strncpy:
     mov     rax, rcx
     test    r8, r8
@@ -7,20 +10,17 @@ strncpy:
     push    r9
 
 strncpy_loop:
-    mov     r9b, byte[rcx]              ; if *destptr == '\0'
-    test    r9b, r9b
-    jz      strncpy_ret
-    add     rcx, 1 
-
-    mov     r9b, byte[rdx]              ; if *srcptr == '\0'
-    test    r9b, r9b
-    jz      strncpy_skip
-    add     rdx, 1
-
-strncpy_skip:
-    sub     r8, 1
+    sub     r8, 1               ; if len(src) > num 
     test    r8,r8
     jz      strncpy_ret
+
+    mov     r9b, byte[rdx]
+    mov     byte[rcx], r9b
+
+    add     rcx, 1
+    test    r9b, r9b
+    jz      strncpy_loop        ; if len(src) < num
+    add     rdx, 1
     jmp     strncpy_loop
        
 strncpy_ret:
