@@ -1,3 +1,5 @@
+    section .text
+
         global task02_strnlen
 ; u64 strnlen(const char *src<rdi>, u64 max_size<rsi>)
 task02_strnlen:
@@ -9,7 +11,7 @@ task02_strnlen:
         test al, al        ; break if str[i] == 0
         jz task02_strnlen_loop_finish
         cmp rsi, rcx
-        jle task02_strnlen_loop_finish
+        jbe task02_strnlen_loop_finish
 
     task02_strnlen_loop_body:
         ; Nothing here :) We are just counting the string length
@@ -37,7 +39,7 @@ task02_strncpy:
         test al, al        ; break if str[i] == 0
         jz task02_strncpy_loop_finish
         cmp rdx, rcx
-        jle task02_strncpy_loop_finish
+        jbe task02_strncpy_loop_finish
 
     task02_strncpy_loop_body:
         ; Intel, can we have `mov [rdi + rcx], byte [rsi + rcx]` at home?
