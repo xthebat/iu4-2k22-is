@@ -37,7 +37,7 @@ test_strncpy_1:
 
         mov rdi, rsp
         mov rsi, g_str1_to_cpy
-        mov rdx, 0x100
+        mov rdx, 0x18
         call task02_strncpy
         
         mov byte [rsp + 0xF], 0x00

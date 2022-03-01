@@ -71,7 +71,7 @@ The program has been written for Linux, therefore, `System V AMD64 ABI` calling 
 - strncpy [must not null-terminate the end](https://stackoverflow.com/questions/1453876/why-does-strncpy-not-null-terminate)
 - Source string is zero-length
 - Source string is larger than max_size
-- Source string is smaller than max_size
+- Source string is smaller than max_size (should fill zeroes)
 
 ### strnlen
 

@@ -29,24 +29,30 @@ task02_strnlen:
 
         global task02_strncpy
 ; char *strncpy(char *dest<rdi>, const char *src<rsi>, u64 max_size<rdx>)
+; if max_size > len(src) -- fill zeroes (whaaat)
 task02_strncpy:
     task02_strncpy_loop_init:
         xor rcx, rcx
 
-    ; Exactly same (like strnlen) loop logic
     task02_strncpy_loop_begin:
-        mov al, byte [rsi + rcx]
-        test al, al        ; break if str[i] == 0
-        jz task02_strncpy_loop_finish
         cmp rdx, rcx
         jbe task02_strncpy_loop_finish
 
     task02_strncpy_loop_body:
+        mov al, byte [rsi + rcx]
+        test al, al
+        jz task02_strncpy_fill_zero
+
+    task02_strncpy_fill:
         ; Intel, can we have `mov [rdi + rcx], byte [rsi + rcx]` at home?
         ; - We already have this command at home.
         ; *This command at home:*
-        mov r8b, byte [rsi + rcx]
-        mov byte [rdi + rcx], r8b
+        mov byte [rdi + rcx], al
+        jmp task02_strncpy_loop_end
+
+    task02_strncpy_fill_zero:
+        xor al, al
+        jmp task02_strncpy_fill
 
     task02_strncpy_loop_end:
         add rcx, 1

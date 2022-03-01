@@ -13,8 +13,11 @@ task02_checksum:
         xor rcx, rcx            ; clear i
 
     task02_checksum_loop_start:
-        cmp rcx, rsi            ; update_flags(a - b)
+        cmp rcx, rsi
         jae task02_checksum_loop_finish
+        lea r11, [rcx + 8]      ; (заканчивается посередине и становится неприятно)
+        cmp r11, rsi
+        ja task02_checksum_loop_finish
 
     task02_checksum_loop_body:
         mov r10, qword [rdi + rcx]   ; r10 is used as temporary storage
@@ -25,7 +28,7 @@ task02_checksum:
         jmp task02_checksum_loop_start
 
     task02_checksum_loop_finish:
-        mov rax, rdi
+        mov rax, rsi
         mov r10, 8
         xor rdx, rdx
         ; ох ё
