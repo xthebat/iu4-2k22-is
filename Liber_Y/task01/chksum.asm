@@ -7,7 +7,6 @@ loop:
 	add rbx, 1 				;rbx+=1
 	sub rdx, 1 				;rdx-=1  
 	jnz loop 				;if (rdx!=0) goto loop
-
 	pop rbx  
 exit:
 	mov rax, r10 			;return r10
