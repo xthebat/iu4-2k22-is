@@ -7,7 +7,8 @@ strncpy:
 	jz exit
 
 	push rbx
-
+	
+	mov rbx, rcx
 	
 loop:
 	mov al, byte [rdx]         ; al = *rdx
