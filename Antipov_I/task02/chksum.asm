@@ -1,7 +1,7 @@
 SECTION .text
 ;int chksum(uint8_t* buf, int size)
 chksum:
-    push    r8
+    ; push    r8
     xor     rax, rax
 chksum_loop:
     test    rdx, rdx
@@ -13,6 +13,6 @@ chksum_loop:
     jmp     chksum_loop
 
 chksum_ret:
-    pop     r8
+    ; pop     r8
     ret
 

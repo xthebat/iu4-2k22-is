@@ -1,7 +1,7 @@
 SECTION .text
 ; size_t strnlen( const char *str, size_t numberOfElements)
 strnlen:
-    push    r9
+    ; push    r9
     xor     rax, rax
 strnlen_loop:
     mov     r9b, byte[rcx]
@@ -13,5 +13,5 @@ strnlen_loop:
     add     rax, 1
     jmp     strnlen_loop
 strnlen_ret:
-    pop     r9
+    ; pop     r9
     ret
