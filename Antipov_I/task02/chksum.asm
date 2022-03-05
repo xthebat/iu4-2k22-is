@@ -4,12 +4,12 @@ chksum:
     ; push    r8
     xor     rax, rax
 chksum_loop:
-    test    rdx, rdx
+    test    edx, edx
     jz      chksum_ret
-    movzx   r8, byte [rcx]
-    add     rax, r8
+    movzx   r8d, byte [rcx]
+    add     eax, r8d
     add     rcx, 1
-    sub     rdx, 1
+    sub     edx, 1
     jmp     chksum_loop
 
 chksum_ret:
