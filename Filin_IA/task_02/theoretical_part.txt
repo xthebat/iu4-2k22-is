@@ -1,0 +1,27 @@
+Registr's
+    Size:
+        rax <--------64--------->
+        eax          <----32---->
+        ax               <--16-->
+        ah, al           <-8><8->
+    
+    Function:
+    rax - return, arithmetic ;
+    rbx - base ;
+    rcx - first argument, "this", counter value ;
+    rdx - twice argument ;
+    ---------------------------------------------
+    rsi - source (base) ; 
+    rdi - destination (base) ;
+    ---------------------------------------------
+    rsp - stack pointer 
+    rbp - base frame pointer
+    ---------------------------------------------
+    r8 - third argument ;
+    r9 - fourth argument ;
+    ---------------------------------------------
+    .
+    .
+    .
+    r15 - general purpose register's;
+    ---------------------------------------------
