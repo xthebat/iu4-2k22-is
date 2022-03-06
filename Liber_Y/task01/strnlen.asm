@@ -1,25 +1,28 @@
 ;size_t strnlen(const char *s, size_t maxlen);
-
 my_strnlen:
 	push rbx
+	test rdx, rdx			;if (rdx==0) goto max_len 
+	jz max_len				
+	
 	mov rbx, rcx   			;rbx=rcx
-	mov r10, rdx  			;r10=rdx
 loop:	
 	mov al, byte [rbx]		;al=*rbx
-	add rbx, 1      		;rbx+=1
-	sub r10, 1          	;r10-=1
-	test r10, r10     		
-	jz exit           		;if (r10==0) goto exit       
+	add rbx, 1      		;rbx+=1      
 	test al, al		  		
 	jnz loop          		;if (al!=0) goto loop 
 	
 	sub rbx, rcx			;rbx=rbc-rcx
 	sub rbx, 1				;rbx-=1
-	mov rax, rcx			;return rcx
+	cmp rbx, rdx
+	jae max_len
 	
-	pop rbx
+	jmp exit
+	
+max_len:
+	mov rbx, rdx
 exit:
-	mov rax, rdx  			;return rdx	    
+	mov rax, rbx  			;return rdx	   
+	pop rbx
 	
 	ret
 	
