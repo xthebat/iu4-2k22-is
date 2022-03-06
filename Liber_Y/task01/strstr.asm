@@ -1,4 +1,5 @@
 ; char * strstr( const char * string1, const char * string2 );
+
 my_strstr:
 	push rbx
 	mov rbx,rcx 				; rbx = rcx

@@ -1,4 +1,5 @@
 ;size_t strnlen(const char *s, size_t maxlen);
+
 my_strnlen:
 	push rbx
 	mov rbx, rcx   			;rbx=rcx
