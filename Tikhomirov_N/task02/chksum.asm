@@ -12,17 +12,15 @@
 
 SECTION .text
 chksum:
-    push r8
-    xor rax, rax                      ; чистим регистр (best practice)
+    xor eax, eax                      ; чистим регистр (best practice)
     chksum_cycle:
         test rdx, rdx                 ; критерий выхода из цикла
         jz chksum_finish
-            movzx r8, byte [rcx]      ; надо сложить x8 и x64, поэтому используем буфер ; movzx is awesome also
-            add rax, r8               ; (собсна выкладываем из буфера и делаем сложение)
+            movzx r8d, byte [rcx]     ; надо сложить x8 и x32, поэтому используем буфер ; movzx is awesome also
+            add eax, r8d              ; (собсна выкладываем из буфера и делаем сложение)
             add rcx, 1                ; двигаем указатель
             sub rdx, 1                ; уменьшаем счётчик
             jmp chksum_cycle          ; цикл
     chksum_finish:
-    pop r8
 ret
 ; как говорил Жуков Алексей Евгеньевич, это задача для маленьких сопливых девочек
