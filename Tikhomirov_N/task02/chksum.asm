@@ -14,12 +14,12 @@ SECTION .text
 chksum:
     xor eax, eax                      ; чистим регистр (best practice)
     chksum_cycle:
-        test rdx, rdx                 ; критерий выхода из цикла
+        test edx, edx                 ; критерий выхода из цикла
         jz chksum_finish
-            movzx r8d, byte [rcx]     ; надо сложить x8 и x32, поэтому используем буфер ; movzx is awesome also
+            movzx r8d, byte [rcx]      ; надо сложить x8 и x32, поэтому используем буфер ; movzx is awesome also
             add eax, r8d              ; (собсна выкладываем из буфера и делаем сложение)
             add rcx, 1                ; двигаем указатель
-            sub rdx, 1                ; уменьшаем счётчик
+            sub edx, 1                ; уменьшаем счётчик
             jmp chksum_cycle          ; цикл
     chksum_finish:
 ret
