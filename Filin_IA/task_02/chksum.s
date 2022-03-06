@@ -28,7 +28,7 @@ loop_chksum:
     cmp ecx, edx               ; сравнение счетчика с количеством элементов массива
     jz return_result
 
-    add rcx, 1                 ; инкрементирование счетчика
+    add ecx, 1                 ; инкрементирование счетчика
 
     jmp loop_chksum
 
