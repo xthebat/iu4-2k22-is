@@ -1,5 +1,5 @@
 ; int chksum(uint8_t* buf, int size)
-; uint8_t* rcx, int rdx
+; uint8_t* rcx, int edx
 ; return rax
 chksum:
 	push rbx
@@ -10,8 +10,8 @@ loop:
 	add r9d, r8d		 	; r9d += r8d
  
 	add rbx, 1 				; rbx += 1
-	sub rdx, 1 				; rdx -= 1  
-	cmp rdx, 0				; rdx <> 0
+	sub edx, 1 				; edx -= 1  
+	cmp edx, 0				; edx <> 0
 	jz loop 				; if (zf == 0) goto loop
 
 	pop rbx  				; <restore rbx>

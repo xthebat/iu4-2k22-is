@@ -32,6 +32,7 @@ loop1:
 	jnz exit1					; if (r9 == r8) goto exit1
 	
 	mov byte[rbx], 0 			; *rbx = 0
+	add r10, 1 					; (uint8_t*)r10 += 1
 	add rbx, 1 					; (uint8_t*)rbx += 1
 	
 	jmp loop1					; goto loop1

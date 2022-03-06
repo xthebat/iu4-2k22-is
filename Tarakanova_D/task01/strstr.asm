@@ -28,7 +28,7 @@ unmatchedbefore:
 	mov r10b, byte[rbx]			; r10b = *(uint8_t*)rbx
 	test r10b, r10b				; if *(uint8_t*)rbx != 0 <==> zf != 1
 	jne loop					; goto to loop
-	jmp notfounded				; goto notfounded
+	jmp notfound				; goto notfound
 	
 matched:
 	cmp r11, 0 					; if (uint8_t*)r11 != 0 <==> zf != 1
@@ -38,15 +38,16 @@ matched:
 matchedbefore:	
 	add r9, 1 					; (uint8_t*)r9 += 1
 	add rbx, 1 					; (uint8_t*)rbx += 1
-	mov r10b, byte[rbx]			; r10b = *(uint8_t*)rbx
-	
-	test r9, r9					; if *(uint8_t*)rdx == 0 <==> zf == 1
+		
+	mov r8b, byte [r9]			; r8b = *(uint8_t*)r9
+	test r8b, r8b				; if *(uint8_t*)rdx == 0 <==> zf == 1
 	jnz exit					; goto exit
 	
+	mov r10b, byte[rbx]			; r10b = *(uint8_t*)rbx
 	test r10b, r10b				; if *(uint8_t*)rbx != 0 <==> zf != 1
 	jne loop					; goto to loop
 	
-notfounded:
+notfound:
 	mov r11, 0					; (uint8_t*)r11 = 0
 		
 exit:
