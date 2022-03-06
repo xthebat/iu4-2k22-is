@@ -1,10 +1,12 @@
-;void<rax> *cksum(void *s<rcx>, int *c<rdx>)
-;return rax
+;void<eax> *cksum(void *s<rcx>, int *c<edx>)
+;return eax
 
 cksum:
 
-	test rdx, rdx
+	test edx, edx
 	jz exit
+
+	xor eax, eax
 
 	push r8
 	
@@ -12,11 +14,11 @@ cksum:
 
 	
 loop:
-	movzx r8, byte [rcx]	; r8 = *rcx
+	movzx r8d, byte [rcx]	; r8 = *rcx
 	add rcx, 1				; rcx = (uint8_t*)rcx + 1
-	add rax, r8				; r8 += 1
-	sub rdx, 1    			; rdx -= 1
-							; zf = 1 if r8 == 0 
+	add eax, r8d			; r8 += eax
+	sub edx, 1    			; edx -= 1
+							; zf = 1 if edx == 0 
 	jnz loop      			; if (zf == 0) goto loop
 	
 	

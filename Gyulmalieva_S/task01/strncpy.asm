@@ -9,6 +9,7 @@ strncpy:
 	push rbx
 	
 	mov rbx, rcx
+
 	
 loop:
 	mov al, byte [rdx]         ; al = *rdx
@@ -18,7 +19,8 @@ loop:
 	add rdx, 1                 ; rdx += 1
 	add rbx, 1                 ; rbx += 1
 	sub r8, 1                  ; r8 -= 1
-	                           ; zf = r8 == 0
+	                           ; zf = 1 if r8 == 0
+	jz exit					   ; if (zf == 1) goto exit
 	jnz loop                   ; if (zf == 0) goto loop
 	
 null:
