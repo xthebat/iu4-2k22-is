@@ -21,20 +21,20 @@ chksum:
 
 loop_chksum:
 
-    mov al, byte [rbx]      ; загрузка одного байта из источника
-    add rbx, 1              ; двигаем адрес
-    add r9, al              ; прибавляем элемент массива
+    movzx eax, byte ptr[rbx]   ; загрузка одного байта из источника
+    add rbx, 1                 ; двигаем адрес
+    add r9d, eax               ; прибавляем элемент массива
 
-    cmp rcx, rdx            ; сравнение счетчика с количеством элементов массива
+    cmp ecx, edx               ; сравнение счетчика с количеством элементов массива
     jz return_result
 
-    add rcx, 1              ; инкрементирование счетчика
+    add rcx, 1                 ; инкрементирование счетчика
 
     jmp loop_chksum
 
 return_result:
 
-    mov eax, r9
+    mov eax, r9d
 
     pop rbx 
     ret
