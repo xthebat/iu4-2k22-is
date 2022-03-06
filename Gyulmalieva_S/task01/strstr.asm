@@ -4,6 +4,7 @@
 strstr:
 
 	push rbx
+	mov r10, rdx
 	
 loop:
 
@@ -39,7 +40,7 @@ loop2:
 	test r8b, r9b    			; zf = 1 if r8b == r9b
 	jz loop2					; if (zf == 1) goto loop2
 
-	sub rdx, 1
+	mov rdx, r10
 	jmp loop
 	
 	

@@ -2,11 +2,12 @@
 ;return rax
 
 strncpy:
-
+	
+	push rbx
 	test r8, r8
 	jz exit
 
-	push rbx
+	
 	
 	mov rbx, rcx
 
@@ -30,10 +31,10 @@ null:
 	jnz null                   ; if (zf == 0) goto null
 	
 	
-	pop rbx
+	
 	
 exit:
 	mov rax, rcx
-	
+	pop rbx
 	
 	ret
