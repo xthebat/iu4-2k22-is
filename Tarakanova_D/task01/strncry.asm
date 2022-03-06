@@ -11,7 +11,7 @@ strncry:
 	mov r10, rdx				; r10 = (uint8_t*)rdx
 								
 loop:
-	mov r9, rbx					; r9 = rbx
+	mov r9, r10					; r9 = r10
 	sub r9, rdx					; r9 = r9 - rdx
 	cmp r9, r8					; r9 <> r8
 	jnz exit1					; if (r9 == r8) goto exit1
@@ -26,7 +26,7 @@ loop:
 	jmp loop					; goto loop
 
 loop1:
-	mov r9, rbx					; r9 = rbx
+	mov r9, r10					; r9 = r10
 	sub r9, rdx					; r9 = r9 - rdx
 	cmp r9, r8					; r9 <> r8
 	jnz exit1					; if (r9 == r8) goto exit1

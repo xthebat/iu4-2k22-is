@@ -8,10 +8,10 @@ strnlen:
 	
 loop:
 	mov r8, rbx					; r8 = rbx
-	cmp r8, rdx					; r8 <> rdx
 	sub r8, rcx					; r8 = r8 - rcx
-	
+	cmp r8, rdx					; r8 <> rdx
 	jnz exit					; if r8 == rdx goto exit
+	
 	mov al, byte[rbx] 			; al= *(uint8_t*)rdx
 	add rbx, 1 					; (uint8_t*)rbx += 1
 	test al, al 				; zf = al == 0
