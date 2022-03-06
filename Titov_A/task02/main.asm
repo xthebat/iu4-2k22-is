@@ -32,14 +32,17 @@ task02_strnlen:
 ; if max_size > len(src) -- fill zeroes (whaaat)
 task02_strncpy:
     task02_strncpy_loop_init:
-        xor rcx, rcx
+        xor rcx, rcx   ; счетчик dest строки
+        xor r8, r8     ; счетчик src строки. Почему они разные? 
+                       ; Потому что иначе теорети образовывался segfault
+                       ; и я решил немношко закостылить >.<
 
     task02_strncpy_loop_begin:
         cmp rdx, rcx
         jbe task02_strncpy_loop_finish
 
     task02_strncpy_loop_body:
-        mov al, byte [rsi + rcx]
+        mov al, byte [rsi + r8]
         test al, al
         jz task02_strncpy_fill_zero
 
@@ -51,11 +54,13 @@ task02_strncpy:
         jmp task02_strncpy_loop_end
 
     task02_strncpy_fill_zero:
-        xor al, al
-        jmp task02_strncpy_fill
+        mov byte [rdi + rcx], 0
+        jmp task02_strncpy_loop_end_zero
 
     task02_strncpy_loop_end:
-        add rcx, 1
+        inc r8
+    task02_strncpy_loop_end_zero:
+        inc rcx
         jmp task02_strncpy_loop_begin
 
     task02_strncpy_loop_finish:
