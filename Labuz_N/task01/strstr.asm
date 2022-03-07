@@ -1,11 +1,10 @@
 strstr:
-	push r11
 	push r12
 	push r13
 	push rbx
 	
 	mov rax, 0
-	mov r10, 0
+	mov r11, 0
 
 back
 	mov rbx, rdx ; начинаем поиск с первого символа подстроки
@@ -22,9 +21,10 @@ loop:
 	jne loop
 
 inner_loop:	
-	add rbx, 1				
-    test rbx, rbx				
-	jz return1
+	add rbx, 1
+        mov r10b, byte[rbx]				
+        test r10b, r10b				
+	jz exit1 ; если дошли до конца подстроки выходим из цикла
 	mov r12b, byte[rbx]
 	mov r13b, byte[rcx]
 	add rcx, 1				
@@ -33,19 +33,17 @@ inner_loop:
 	jne back ; при несовпадении возвращаемся назад
 
 exit1:
-    push rbx
-	push r13
-	push r12
-	push r11
+        pop rbx
+	pop r13
+	pop r12
 	mov rax,r11	
 	
 	ret
 	
 exit2:
-    push rbx
-	push r13
-	push r12
-	push r11
+        push rbx
+	pop r13
+	pop r12
 	mov rax,0				
 	
 	ret

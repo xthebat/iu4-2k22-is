@@ -12,7 +12,8 @@ loop:
 	test al, al				   	
 	jz set_nulls ;если дошли до конца, то идем запонять нулями
 	sub r8, 1                  	                           		
-	jnz loop                   
+	jnz loop
+        jz exit                   
 	
 set_nulls:
 	sub r8, 1 				   
@@ -24,7 +25,6 @@ set_nulls:
 	pop rbx                    
 
 exit:
-
 	mov rax, rcx
 	
 	ret

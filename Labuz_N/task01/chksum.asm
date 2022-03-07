@@ -1,13 +1,11 @@
-chksum:
-	
-	push rbx
-	mov rbx, rcx       
+chksum:	
+	push rbx     
 	mov rax, 0
 
 loop: 
-	mov al, byte [rbx]         
-	add rax, al
-	add rbx, 1				   
+	mov bl, byte [rcx]         
+	add rax, bl
+	add rcx, 1				   
 	sub rdx, 1                 	                          							   
 	jnz loop                   
 	
