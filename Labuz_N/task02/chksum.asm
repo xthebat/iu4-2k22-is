@@ -1,6 +1,8 @@
 chksum:	
 	push rbx     
 	mov rax, 0
+        test rdx, rdx
+        jz exit
 
 loop: 
 	mov bl, byte [rcx]         
@@ -10,5 +12,6 @@ loop:
 	jnz loop                   
 	
 	pop rbx
-	
+
+exit:	
 	ret
