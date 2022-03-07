@@ -9,9 +9,8 @@ loop:
 	add rax, bl
 	add rcx, 1				   
 	sub rdx, 1                 	                          							   
-	jnz loop                   
-	
-	pop rbx
+	jnz loop                   	
 
-exit:	
+exit:
+	pop rbx	
 	ret

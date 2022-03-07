@@ -20,11 +20,10 @@ set_nulls:
 	mov byte[rbx], 0		   
 	add rbx, 1                 
 	cmp r8, 0				   
-	jne set_nulls			   
-	
-	pop rbx                    
+	jne set_nulls			                       
 
 exit:
+	pop rbx
 	mov rax, rcx
 	
 	ret

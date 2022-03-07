@@ -6,6 +6,8 @@ strstr:
 	
 	mov rax, 0
 	mov r11, 0
+        jmp loop
+
 
 back
 	mov rcx, r14
