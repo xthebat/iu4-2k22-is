@@ -15,7 +15,7 @@ loop:
 	add r11, 1
 	add rcx, 1 
 	test rcx, rcx
-	jz return2
+	jz exit2
 	cmp r12b, r13b
 	je inner_loop ; при нахождении первого символа подстроки идем проверять совпадения других символов 
 	jne loop
@@ -41,7 +41,7 @@ exit1:
 	ret
 	
 exit2:
-        push rbx
+        pop rbx
 	pop r13
 	pop r12
 	mov rax,0				
