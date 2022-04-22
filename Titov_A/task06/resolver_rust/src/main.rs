@@ -1,12 +1,9 @@
 mod resolver;
 mod app;
 
-use std::borrow::{Borrow, Cow};
-use std::error::Error as ErrorError;
-use std::io::Error;
 use crate::resolver::Serial;
 use crate::resolver::VecString;
-use crate::app::{app_initial_parse, AppData};
+use crate::app::app_initial_parse;
 
 trait KeyDecipher {
     fn byte_decipher(&self, salt: u32) -> String;
@@ -40,21 +37,29 @@ impl KeyDecipher for String {
 fn main() {
     let app_data = match app_initial_parse() {
         Ok(data) => data,
-        Err(e) => panic!("{}", e.description())
+        Err(e) => panic!("{}", e)
     };
     println!("Username: {}", app_data.username);
 
     let serial = match Serial::get_serial_code() {
         Ok(s) => s,
-        Err(e) => panic!("{}", e.description())
+        Err(e) => panic!("{}", e)
     };
-    println!("Serial: 0x{serial:08X}");
+    println!("Serial:   0x{serial:08X}");
 
-    let result = app_data.username
+    let password = app_data.username
         .to_string()
         .padding(0x8)
         .byte_decipher(serial)
         .to_string();
-    println!("Password: {result}")
+    println!("Password: {password}\n");
+
+
+    println!(
+        "Command to execute:\n\
+        \x1b[36m.\\task09.exe\x1b[0m \x1b[35m\" \" -u {} -p {} -f FILE_PATH\x1b[0m",
+        app_data.username,
+        password
+    );
 }
 

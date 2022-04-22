@@ -1,6 +1,5 @@
-use std::error::Error as ErrorError;
 use std::io;
-use std::io::{Error, ErrorKind};
+use std::io::ErrorKind;
 use std::process::Command;
 
 pub trait VecString {

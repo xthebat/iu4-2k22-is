@@ -1,6 +1,5 @@
-use std::collections::hash_map::Keys;
 use std::io;
-use std::io::{Error, ErrorKind};
+use std::io::ErrorKind;
 use clap::Arg;
 
 pub struct AppData {
