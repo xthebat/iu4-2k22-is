@@ -19,7 +19,7 @@ int __fastcall x_copy_file_SerialNumber(char *ser_number)
   return 0;
 }
 
-int main(const int argc, const char** argv[])
+int main(const int argc, const char* argv[])
 {
 	//int *lic_status, __int64 username, __int64 password
     long long result; // rax
@@ -29,8 +29,7 @@ int main(const int argc, const char** argv[])
     short salt_string; // [rsp+AAh] [rbp+2Ah]
     int i; // [rsp+ACh] [rbp+2Ch]
     int v_global_flag = 1;
-    int password;
-    //int* buf;
+//    int password;
 
 
     if (argc<2){
@@ -44,10 +43,15 @@ int main(const int argc, const char** argv[])
 
     printf("len: %i\n", len);
     printf(" username:");
+
     while(i < len)
-    {
-        username[i] = (int)argv[1][i];
-        printf("%c", username[i]);
+    {   if (i == 0){
+            username[i] = (int)*argv[1];
+        }
+        else{
+            username[i] = (int)*++argv[1];
+        }
+        printf("%i", username[i]);
         i++;
     }
     printf("\n", len);
@@ -57,20 +61,24 @@ int main(const int argc, const char** argv[])
     i = 0;
 
     printf(" serial_number:%s \n", ser_number);
-
-    while(i < strlen(ser_number))
+    while(i < strlen(ser_number) && ser_number[i] != ' ')
     {
-        salt_string += ser_number[i];
+        if (ser_number[i]>47 && ser_number[i]<58){
+            salt_string += (int)ser_number[i] - 48;
+        }
+        else{
+            salt_string += (int)ser_number[i];
+        }
         i++;
     }
     printf(" salt:%d \n", salt_string);
     printf(" password:");
     for (int j = 0; j < 8 ; j++ )
     {
-		_hash = (char)((int)salt_string ^ username[j]) % 25 + 'a';
-		password = (int)_hash;
+		_hash = (char)((salt_string ^ username[j]) % 25) + 'a';
+//		password = (int)_hash;
         if ( v_global_flag ){
-			putchar(password);
+			putchar(_hash);
 		}
 
     }
